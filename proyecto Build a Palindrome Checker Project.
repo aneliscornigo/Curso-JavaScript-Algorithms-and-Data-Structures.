@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Palindrome Checker</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+  }
+  #text-input {
+    width: 300px;
+    padding: 8px;
+    font-size: 16px;
+  }
+  #check-btn {
+    padding: 8px 12px;
+    font-size: 16px;
+    margin-left: 10px;
+  }
+  #result {
+    margin-top: 20px;
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+
+<h2>Palindrome Checker</h2>
+
+<input type="text" id="text-input" placeholder="Escribe aquí..." />
+<button id="check-btn">Check</button>
+
+<p id="result"></p>
+
+<script>
+  
+  function cleanText(text) {
+   
+    return text.toLowerCase().replace(/[^a-z0-9]/g, '');
+  }
+
+  function isPalindrome(text) {
+    const cleaned = cleanText(text);
+    const reversed = cleaned.split('').reverse().join('');
+    return cleaned === reversed;
+  }
+
+  const input = document.getElementById('text-input');
+  const btn = document.getElementById('check-btn');
+  const result = document.getElementById('result');
+
+  btn.addEventListener('click', function() {
+    const userInput = input.value;
+
+    if (userInput.trim() === '') {
+      alert('Please input a value.');
+      result.textContent = '';
+      return;
+    }
+
+    if (isPalindrome(userInput)) {
+      result.textContent = `${userInput} is a palindrome.`;
+    } else {
+      result.textContent = `${userInput} is not a palindrome.`;
+    }
+  });
+</script>
+
+</body>
+</html>
